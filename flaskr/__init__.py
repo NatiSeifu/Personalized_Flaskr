@@ -37,6 +37,9 @@ def create_app(test_config=None): # this creates the app and helps not have conf
     app.register_blueprint(blog.bp)
     app.add_url_rule('/', endpoint='index')
 
+    from . import post_affinity
+    app.register_blueprint(post_affinity.bp)
+
     return app
 
 

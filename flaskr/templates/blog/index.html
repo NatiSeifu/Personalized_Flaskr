@@ -20,6 +20,16 @@
         {% endif %}
       </header>
       <p class="body">{{ post['body'] }}</p>
+      <!-- Like Button -->
+      <form action="{{ url_for('affinity.like') }}" method="post" style="display:inline;">
+        <input type="hidden" name="post_id" value="{{ post['id'] }}">
+        <button type="submit">👍 Like</button>
+      </form>
+      <!-- Dislike Button -->
+      <form action="{{ url_for('affinity.dislike') }}" method="post" style="display:inline;">
+        <input type="hidden" name="post_id" value="{{ post['id'] }}">
+        <button type="submit">👎 Dislike</button>
+      </form>
     </article>
     {% if not loop.last %}
       <hr>

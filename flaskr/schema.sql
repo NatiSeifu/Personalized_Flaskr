@@ -15,3 +15,12 @@ CREATE TABLE post (
   body TEXT NOT NULL,
   FOREIGN KEY (author_id) REFERENCES user (id)
 );
+
+CREATE TABLE affinity (
+  user_id INTEGER NOT NULL,
+  post_id INTEGER NOT NULL,
+  like_status INTEGER NOT NULL,
+  PRIMARY KEY (user_id, post_id),
+  FOREIGN KEY (user_id) REFERENCES user(id),
+  FOREIGN KEY (post_id) REFERENCES post(id)
+);

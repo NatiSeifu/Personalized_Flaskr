@@ -1,0 +1,17 @@
+pyproject.toml
+setup.py
+flaskr/__init__.py
+flaskr/auth.py
+flaskr/blog.py
+flaskr/db.py
+flaskr.egg-info/PKG-INFO
+flaskr.egg-info/SOURCES.txt
+flaskr.egg-info/dependency_links.txt
+flaskr.egg-info/requires.txt
+flaskr.egg-info/top_level.txt
+flaskr/static/style.css
+flaskr/templates/base.html
+tests/test_auth.py
+tests/test_blog.py
+tests/test_db.py
+tests/test_factory.py

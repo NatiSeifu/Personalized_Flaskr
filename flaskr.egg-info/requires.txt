@@ -1,0 +1,8 @@
+flask
+click
+werkzeug
+
+[dev]
+pytest
+black
+flake8

@@ -8,6 +8,22 @@
 {% endblock %}
 
 {% block content %}
+  <!-- Motivational Quote Widget -->
+  <div class="quote-widget">
+    <h3>Daily Motivation</h3>
+    <form action="{{ url_for('blog.index') }}" method="post" style="display:inline;">
+      <button type="submit" class="quote-btn">Get Quote</button>
+    </form>
+    
+    {% if quote %}
+      <div class="quote-display">
+        <blockquote>{{ quote }}</blockquote>
+      </div>
+    {% endif %}
+  </div>
+  
+  <hr>
+  
   {% for post in posts %}
     <article class="post">
       <header>

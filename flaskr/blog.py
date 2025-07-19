@@ -8,15 +8,34 @@ from flaskr.db import get_db
 
 bp = Blueprint('blog', __name__)
 
-@bp.route('/')
+@bp.route('/', methods=['GET', 'POST'])
 def index():
+    quote = None
+    
+    if request.method == 'POST':
+        try:
+            from google import genai
+            from google.genai import types
+            
+            client = genai.Client()
+            response = client.models.generate_content(
+                model="gemini-2.5-flash",
+                contents="Give me a random motivational quote in the tone of a German Philosopher.",
+                config = types.GenerateContentConfig(
+                    thinking_config = types.ThinkingConfig(thinking_budget = 0)
+                )
+            )
+            quote = response.text
+        except Exception as e:
+            flash(f"An error occurred: {e}", "error")
+    
     db = get_db()
     posts = db.execute(
         'SELECT p.id, title, body, created, author_id, username'
         ' FROM post p JOIN user u ON p.author_id = u.id'
         ' ORDER BY created DESC'
     ).fetchall()
-    return render_template('blog/index.html', posts=posts)
+    return render_template('blog/index.html', posts=posts, quote=quote)
 
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required

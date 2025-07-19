@@ -24,3 +24,84 @@ nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
 .content textarea { min-height: 12em; resize: vertical; }
 input.danger { color: #cc2f2e; }
 input[type=submit] { align-self: start; min-width: 10em; }
+
+/* LLM Component Styles */
+.motivate-container {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.motivate-btn {
+  background: #377ba8;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.motivate-btn:hover {
+  background: #2c5f8a;
+}
+
+.quote-display {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-left: 4px solid #377ba8;
+  border-radius: 5px;
+}
+
+.quote-display blockquote {
+  margin: 0;
+  font-style: italic;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Quote Widget for Blog Feed */
+.quote-widget {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.quote-widget h3 {
+  margin: 0 0 1rem 0;
+  color: #377ba8;
+  font-size: 1.3rem;
+}
+
+.quote-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+.quote-btn:hover {
+  background: #218838;
+}
+
+.quote-widget .quote-display {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: white;
+  border-left: 4px solid #28a745;
+  border-radius: 4px;
+}
+
+.quote-widget .quote-display blockquote {
+  font-size: 1rem;
+  margin: 0;
+}

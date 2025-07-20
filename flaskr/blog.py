@@ -29,13 +29,38 @@ def index():
         except Exception as e:
             flash(f"An error occurred: {e}", "error")
     
+    page_number = int(request.args.get('page', 1)) # 1 -> 0, 2 -> 5 3--> 10
+    posts_per_page = 5
+
     db = get_db()
+
+    # Count total posts
+    total_posts = db.execute(
+        'SELECT COUNT(*) FROM post'
+    ).fetchone()[0]
+
+    total_pages = (total_posts + posts_per_page - 1) // posts_per_page  # Ceiling division
+
     posts = db.execute(
         'SELECT p.id, title, body, created, author_id, username'
         ' FROM post p JOIN user u ON p.author_id = u.id'
         ' ORDER BY created DESC'
+        ' LIMIT ? OFFSET ?',
+        (posts_per_page, ((page_number-1) * posts_per_page))
     ).fetchall()
-    return render_template('blog/index.html', posts=posts, quote=quote)
+
+    has_prev = page_number > 1
+    has_next = page_number < total_pages
+
+    return render_template(
+        'blog/index.html',
+        posts=posts,
+        quote=quote,
+        page_number=page_number,
+        total_pages=total_pages,
+        has_prev=has_prev,
+        has_next=has_next
+    )
 
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required

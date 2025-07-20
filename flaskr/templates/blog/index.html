@@ -51,4 +51,16 @@
       <hr>
     {% endif %}
   {% endfor %}
+
+<div class="pagination">
+  {% if has_prev %}
+    <a href="{{ url_for('blog.index', page=page_number-1) }}">Previous</a>
+  {% endif %}
+
+  <span>Page {{ page_number }} of {{ total_pages }}</span>
+
+  {% if has_next %}
+    <a href="{{ url_for('blog.index', page=page_number+1) }}">Next</a>
+  {% endif %}
+</div>
 {% endblock %}

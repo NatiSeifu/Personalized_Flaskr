@@ -1,10 +1,11 @@
 import os
+from flask_cors import CORS
 
-from flask import Flask
+from flask import Flask, jsonify, request
 
 def create_app(test_config=None): # this creates the app and helps not have confusions later on with just one instantiation of the Flask class
     app = Flask(__name__, instance_relative_config=True)
-
+      CORS(app)
     app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
@@ -23,9 +24,11 @@ def create_app(test_config=None): # this creates the app and helps not have conf
         pass
 
     # a simple page that says hello
-    @app.route('/hello')
+    @app.route('/api/hello', methods=['GET', 'OPTIONS'])
     def hello():
-        return 'Hello, World!'
+        if request.method == 'OPTIONS':
+            return '', 204
+        return jsonify({'message': "Hello from Flask!"})
 
     from . import db
     db.init_app(app)

@@ -8,6 +8,7 @@ flask = "*"
 pytest = "*"
 coverage = "*"
 google-genai = "*"
+flask-cors = "*"
 
 [dev-packages]
 build = "*"
